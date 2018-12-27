@@ -52,6 +52,23 @@ To stop:
 To monitor the log:
 
     ./tail.sh
+    
+To add as centos service:
+
+    vim /etc/systemd/system/ssr.service
+    
+    [Unit]
+    Description=ShadowsocksR Autostart
+    After=network.service
+    
+    [Service]
+    TimeoutStartSec=0
+    ExecStart=/opt/shadowsocksr/shadowsocks/server.py -c /opt/shadowsocksr/user-config.json
+    ExecStop=/opt/shadowsocksr/shadowsocks/stop.sh
+    
+    [Install]
+    WantedBy=multi-user.target 
+    
 
 
 Client
